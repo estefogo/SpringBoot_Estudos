@@ -6,4 +6,4 @@
   
 <hr>
 
-<p>Repository created to apply the concepts learned within the SpringBoot course, offered by Udemy and ministered by Dougllas Sousa.</p>
+<h4>Repository created to apply the concepts learned within the SpringBoot course, offered by Udemy and ministered by Dougllas Sousa.</h4>
