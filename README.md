@@ -1,7 +1,7 @@
-<h2>💻 Spring Boot Expert: JPA, RESTFul API, Security, JWT e Mais</h2>
+<h2>💻 Spring Boot Expert: JPA, RESTFul API, Security, JWT & More</h2>
 
-<h4>👩🏻‍💻 Author: Rafaela Mendonça Estefogo</h4>
-<h4>🗓️ Creation date: 22/03/2024</h4>
+<h3>👩🏻‍💻 Author: Rafaela Mendonça Estefogo</h3>
+<h3>🗓️ Creation date: 22/03/2024</h3>
 <b>Link do curso: </b>https://www.udemy.com/course/spring-boot-expert/?couponCode=ST14MT32124
   
 <hr>
