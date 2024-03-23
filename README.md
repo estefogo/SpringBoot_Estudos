@@ -2,7 +2,7 @@
 
 <h4>👩🏻‍💻 Author: Rafaela Mendonça Estefogo</h4>
 <h4>🗓️ Creation date: 22/03/2024</h4>
-<b>(https://www.udemy.com/course/spring-boot-expert/?couponCode=ST14MT32124)</b>
+<b>Link do curso: </b>https://www.udemy.com/course/spring-boot-expert/?couponCode=ST14MT32124
   
 <hr>
 
