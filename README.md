@@ -8,4 +8,4 @@
 
 <p>Repository created to apply the concepts learned within the SpringBoot course, offered by Udemy and ministered by Dougllas Sousa.</p>
 
-<h4>Caderno de anotações: https://rafaelaestefogo.notion.site/Udemy-Spring-Boot-Expert-JPA-RESTFul-API-Security-JWT-e-Mais-0e6b949da62346bab2390e7c1647c121?pvs=4</h4>
+<p><b>📝 Caderno de anotações: </b>https://rafaelaestefogo.notion.site/Udemy-Spring-Boot-Expert-JPA-RESTFul-API-Security-JWT-e-Mais-0e6b949da62346bab2390e7c1647c121?pvs=4</p>
