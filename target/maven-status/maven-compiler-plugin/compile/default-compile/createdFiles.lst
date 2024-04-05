@@ -1,5 +1,2 @@
-io/github/rafaestefogo/repository/Repository.class
-io/github/rafaestefogo/service/Service.class
-io/github/rafaestefogo/model/Cliente.class
-io/github/rafaestefogo/VendasApplication.class
-io/github/rafaestefogo/configurations/Config.class
+io/github/rafaestefogo/Application.class
+io/github/rafaestefogo/Controller.class
