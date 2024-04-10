@@ -1,11 +1,11 @@
-package io.github.rafaestefogo.domain.entity.jdbc;
+package io.github.rafaestefogo.domain.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class OrderEntityJdbc {
+public class OrderEntity {
     private Integer id;
-    private ClientEntityJdbc clientEntity;
+    private ClientEntity clientEntity;
     private LocalDate orderDate;
     private BigDecimal totalValue;
 
@@ -17,11 +17,11 @@ public class OrderEntityJdbc {
         this.id = id;
     }
 
-    public ClientEntityJdbc getClient() {
+    public ClientEntity getClient() {
         return clientEntity;
     }
 
-    public void setClient(ClientEntityJdbc clientEntity) {
+    public void setClient(ClientEntity clientEntity) {
         this.clientEntity = clientEntity;
     }
 

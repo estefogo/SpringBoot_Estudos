@@ -1,8 +1,8 @@
-package io.github.rafaestefogo.domain.entity.jdbc;
+package io.github.rafaestefogo.domain.entity;
 
 import java.math.BigDecimal;
 
-public class ProductEntityJdbc {
+public class ProductEntity {
     private Integer id;
     private String productName;
     private String description;
