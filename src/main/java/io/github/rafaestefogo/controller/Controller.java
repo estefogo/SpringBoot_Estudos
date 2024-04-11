@@ -1,4 +1,4 @@
-package io.github.rafaestefogo;
+package io.github.rafaestefogo.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 

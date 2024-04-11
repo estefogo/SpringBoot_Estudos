@@ -1,6 +1,15 @@
 package io.github.rafaestefogo.domain.entity;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class ItemOrderEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private OrderEntity orderEntity;
     private ProductEntity productEntity;
