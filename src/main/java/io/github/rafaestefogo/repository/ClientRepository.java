@@ -12,4 +12,8 @@ public interface ClientRepository extends JpaRepository<ClientEntity, Integer> {
     //metodo que tambem eh valido pra fazer buscas no banco de dados, mas que implementa o jpql (query manual)
     @Query("select c from ClientEntity c where c.name like :name")
     List<ClientEntity> findClientByNameQuery(@Param("name") String nameParam);
+
+    @Query("select c from ClientEntity c left join fetch c.clientOrder where c.id = :id")
+    ClientEntity findClientFetchOrders(@Param("id") Integer id); //busca o cliente e traz os pedidos dele junto
+
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
@@ -16,11 +17,12 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Integer id;
+
     @Column(name = "name")
     private String productName;
     @Column(name = "description")
     private String description;
-    @Column(name = "value")
+    @Column(name = "value", precision = 10, scale = 2)
     private BigDecimal productValue;
     @Column(name = "availableStock")
     private int availableStock;

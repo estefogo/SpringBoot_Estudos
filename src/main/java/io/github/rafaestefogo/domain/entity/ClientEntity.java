@@ -2,6 +2,7 @@ package io.github.rafaestefogo.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,15 +19,15 @@ public class ClientEntity {
     @Column(name = "id") //nao precisa colocar essa annotation se for o mesmo nome do campo na aplicacao e no banco de dados
     private Integer id;
 
-    @OneToMany(mappedBy = "cliente") //o mappedBy indica qual campo da CLASSE ATUAL esta sendo usado pro mapeamento na CLASSE RELACIONADA
-    private Set<OrderEntity> orders; //o Set eh uma coleçao que garante que nao havera elementos duplicados
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY) //o mappedBy indica qual campo da CLASSE ATUAL esta sendo usado pro mapeamento na CLASSE RELACIONADA
+    private Set<OrderEntity> clientOrder; //o Set eh uma coleçao que garante que nao havera elementos duplicados
 
-    public Set<OrderEntity> getOrders() {
-        return orders;
+    public Set<OrderEntity> getClientOrder() {
+        return clientOrder;
     }
 
-    public void setOrders(Set<OrderEntity> orders) {
-        this.orders = orders;
+    public void setClientOrder(Set<OrderEntity> clientOrder) {
+        this.clientOrder = clientOrder;
     }
 
     @Column(name = "name")
@@ -35,12 +36,6 @@ public class ClientEntity {
     private int age;
 
     public ClientEntity(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    public ClientEntity(Integer id, String name, int age) {
-        this.id = id;
         this.name = name;
         this.age = age;
     }
