@@ -3,6 +3,7 @@ package io.github.rafaestefogo.controller;
 import io.github.rafaestefogo.domain.entity.ClientEntity;
 import io.github.rafaestefogo.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
@@ -20,14 +21,17 @@ public class ClientController {
     @Autowired
     private ClientRepository clientRepository;
 
-    @GetMapping(value = "/name/{name}")
+    @GetMapping("/id/{id}")
     @ResponseBody
-    public ResponseEntity<ClientEntity> findClientByName(@PathVariable("name") String clientName) {
-        ClientEntity client = clientRepository.findClientByName(clientName);
-        if(client.equals(null)) {
-            System.out.println("The required name does not match with any register.");
-        } else {
-            return ResponseEntity.of(client.get());
+    public ResponseEntity<ClientEntity> getClientById(@PathVariable("id") Integer id) {
+        Optional<ClientEntity> client = clientRepository.findById(id);
+
+        if(client.isPresent()) {
+            ResponseEntity<ClientEntity> responseEntity = new ResponseEntity<>(
+                    client.get(),
+                    HttpStatus.OK);
+            return ResponseEntity.ok(client.get());
         }
+        return ResponseEntity.notFound().build();
     }
 }

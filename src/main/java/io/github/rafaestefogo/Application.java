@@ -23,24 +23,6 @@ public class Application {
             //SALVANDO CLIENTES
             ClientEntity Pessoinha = new ClientEntity("Pessoinha", 20);
             clientsRepository.save(Pessoinha);
-
-            OrderEntity order1 = new OrderEntity(Pessoinha, LocalDate.now(), BigDecimal.valueOf(1000));
-            orderRepository.save(order1);
-
-            OrderEntity order2 = new OrderEntity(Pessoinha, LocalDate.now(), BigDecimal.valueOf(500));
-            orderRepository.save(order2);
-
-            //LISTANDO PEDIDOS DE UM CLIENTE
-            ClientEntity client = clientsRepository.findClientFetchOrders(order1.getClient().getId());
-            System.out.println("Listando pedidos de um cliente:\n" + client);
-
-            //BUSCANDO CLIENTES PELO ID DE UM PEDIDO
-            ClientEntity findingClientByOrder = clientsRepository.findClientByOrderIdFetchOrders(1);
-            System.out.println("\nEncontrando CLIENTE buscando pelo id do PEDIDO atrelado a ele:\n" + findingClientByOrder);
-
-            //BUSCANDO PEDIDOS PELO CLIENTE ATRELADO A ELE
-            System.out.println("\n\nEncontrando PEDIDO buscando pelo id do CLIENTE atrelado a ele: ");
-            orderRepository.findByClient(Pessoinha).forEach(System.out::println); //forma diferente de chamar o metodo findByClient e exibir todos os registros da lista
         };
     }
 
