@@ -9,11 +9,13 @@ import java.util.List;
 public interface ClientRepository extends JpaRepository<ClientEntity, Integer> { //<(entidade do repositorio), (tipo do Id)>
     List<ClientEntity> findByNameContaining(String name);
 
-    //metodo que tambem eh valido pra fazer buscas no banco de dados, mas que implementa o jpql (query manual)
+    //usando o @Query, ele tambem eh valido pra fazer buscas no banco de dados, mas implementa o jpql (query manual)
     @Query("select c from ClientEntity c where c.name like :name")
-    List<ClientEntity> findClientByNameQuery(@Param("name") String nameParam);
+    List<ClientEntity> findClientByNameQuery(@Param("name") String nameParam); //busca o cliente pelo nome
 
     @Query("select c from ClientEntity c left join fetch c.clientOrder where c.id = :id")
     ClientEntity findClientFetchOrders(@Param("id") Integer id); //busca o cliente e traz os pedidos dele junto
 
+    @Query("select c from ClientEntity c join c.clientOrder o where o.id = :orderId") //busca o cliente de acordo com o id de um pedido atrelado a ele
+    ClientEntity findClientByOrderIdFetchOrders(@Param("orderId") Integer orderId);
 }
