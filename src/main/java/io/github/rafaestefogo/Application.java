@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @SpringBootApplication
 public class Application {
@@ -40,7 +41,6 @@ public class Application {
             //BUSCANDO PEDIDOS PELO CLIENTE ATRELADO A ELE
             System.out.println("\n\nEncontrando PEDIDO buscando pelo id do CLIENTE atrelado a ele: ");
             orderRepository.findByClient(Pessoinha).forEach(System.out::println); //forma diferente de chamar o metodo findByClient e exibir todos os registros da lista
-
         };
     }
 
