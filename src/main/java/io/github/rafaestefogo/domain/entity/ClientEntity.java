@@ -1,5 +1,6 @@
 package io.github.rafaestefogo.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -19,6 +20,7 @@ public class ClientEntity {
     @Column(name = "id") //nao precisa colocar essa annotation se for o mesmo nome do campo na aplicacao e no banco de dados
     private Integer id;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY) //o mappedBy indica qual campo da CLASSE ATUAL esta sendo usado pro mapeamento na CLASSE RELACIONADA
     private Set<OrderEntity> clientOrder; //o Set eh uma coleçao que garante que nao havera elementos duplicados
 
