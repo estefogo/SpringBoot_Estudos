@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ClientRepository extends JpaRepository<ClientEntity, Integer> { //<(entidade do repositorio), (tipo do Id)>
-    public ClientEntity findClientByName(String name);
+    List<ClientEntity> findByNameContaining(String name);
 
     //usando o @Query, ele tambem eh valido pra fazer buscas no banco de dados, mas implementa o jpql (query manual)
     @Query("select c from ClientEntity c where c.name like :name")
