@@ -7,71 +7,63 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/api/clients")
 public class ClientController {
 
     @Autowired
     private ClientRepository clientRepository;
 
-    @GetMapping("/findClientById/{id}")
-    @ResponseBody
-    public ResponseEntity<ClientEntity> getClientById(@PathVariable("id") Integer id) {
-        Optional<ClientEntity> client = clientRepository.findById(id);
+    @GetMapping("/listClients")
+    public List<ClientEntity> listAllClients() {
+        return clientRepository.findAll();
+    }
 
-        if (client.isPresent()) {
-            return new ResponseEntity<>(
-                    client.get(),
-                    HttpStatus.OK);
-        }
-        return ResponseEntity.notFound().build();
+    @GetMapping("/findClientById/{id}")
+    public ClientEntity getClientById(@PathVariable("id") Integer id) {
+        return clientRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not found"));
+
     }
 
     @PostMapping("/saveNewClient")
-    @ResponseBody
-    public ResponseEntity<ClientEntity> save(@RequestBody ClientEntity client) {
-        ClientEntity newClient = clientRepository.save(client);
-        return ResponseEntity.ok(newClient);
+    @ResponseStatus(HttpStatus.CREATED) //define que o status em caso de sucesso eh CREATED ao inves de SUCESSO
+        public ClientEntity save(@RequestBody ClientEntity client) {
+            return clientRepository.save(client);
     }
 
     @DeleteMapping("/deleteClient/{id}")
-    @ResponseBody
-    public ResponseEntity<ClientEntity> deleteClientById(@PathVariable Integer id) {
-        Optional<ClientEntity> clientForDelete = clientRepository.findById(id);
-        if (clientForDelete.isPresent()) {
-            clientRepository.delete(clientForDelete.get());
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteClientById(@PathVariable Integer id) {
+        clientRepository.findById(id)
+                .map(client -> {
+                    clientRepository.delete(client);
+                    return client;
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not found"));
     }
 
     @PutMapping("/updateName/{id}/{name}")
-    @ResponseBody
-    public ResponseEntity<Object> updateClient(@PathVariable Integer id, @PathVariable String name) {
-
-        return clientRepository.findById(id).map(existingClient -> {
-            existingClient.setName(name);
-            clientRepository.save(existingClient);
-            return ResponseEntity.noContent().build();
-        }).orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
-    @GetMapping("/listClients")
-    public ResponseEntity<Object> listAllClients() {
-        List<ClientEntity> clientsList = clientRepository.findAll();
-        return ResponseEntity.ok().body(clientsList);
+    public ClientEntity updateClient(@PathVariable("id") Integer id, @PathVariable("name") String name) {
+        return clientRepository.findById(id)
+                .map(client -> {
+                    client.setName(name);
+                    return client;
+                })
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Client not found"));
     }
 }
