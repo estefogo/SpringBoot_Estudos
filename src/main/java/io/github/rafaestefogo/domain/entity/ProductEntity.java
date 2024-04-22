@@ -5,65 +5,50 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-
+import lombok.Getter;
+import lombok.Setter;
 import java.math.BigDecimal;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "product")
 public class ProductEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Integer id;
 
     @Column(name = "name")
-    private String productName;
+    private String name;
+
+    @Column(name = "productValue")
+    private BigDecimal value;
+
     @Column(name = "description")
     private String description;
-    @Column(name = "value", precision = 10, scale = 2)
-    private BigDecimal productValue;
+
     @Column(name = "availableStock")
-    private int availableStock;
+    private Integer availableStock;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
+    public ProductEntity(String name, BigDecimal value, String description, Integer availableStock) {
+        this.name = name;
+        this.value = value;
         this.description = description;
-    }
-
-    public BigDecimal getProductValue() {
-        return productValue;
-    }
-
-    public void setProductValue(BigDecimal productValue) {
-        this.productValue = productValue;
-    }
-
-    public int getAvailableStock() {
-        return availableStock;
-    }
-
-    public void setAvailableStock(int availableStock) {
         this.availableStock = availableStock;
+    }
+
+    public ProductEntity() {}
+
+    @Override
+    public String toString() {
+        return "Product -> " +
+                "\nId = " + id +
+                "\nName = " + name +
+                "\nValue = " + value +
+                "\nDescription = " + description +
+                "\nAvailableStock = " + availableStock;
     }
 }

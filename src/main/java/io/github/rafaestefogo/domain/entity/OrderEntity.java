@@ -9,11 +9,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "orders")
 public class OrderEntity {
@@ -25,6 +29,7 @@ public class OrderEntity {
     @JoinColumn(name = "client")
     private ClientEntity client;
 
+    @Getter
     @OneToMany(mappedBy = "clientOrder")
     private List<ItemOrderEntity> itemOrder;
 
@@ -40,46 +45,6 @@ public class OrderEntity {
     }
 
     public OrderEntity() {
-    }
-
-    public List<ItemOrderEntity> getItemOrder() {
-        return itemOrder;
-    }
-
-    public void setItemOrder(List<ItemOrderEntity> itemOrder) {
-        this.itemOrder = itemOrder;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public ClientEntity getClient() {
-        return client;
-    }
-
-    public void setClient(ClientEntity clientEntity) {
-        this.client = clientEntity;
-    }
-
-    public LocalDate getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public BigDecimal getTotalValue() {
-        return totalValue;
-    }
-
-    public void setTotalValue(BigDecimal totalValue) {
-        this.totalValue = totalValue;
     }
 
     @Override

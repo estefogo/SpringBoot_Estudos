@@ -1,6 +1,6 @@
 package io.github.rafaestefogo.domain.entity;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,7 +9,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "itemOrder")
 public class ItemOrderEntity {
@@ -17,52 +25,15 @@ public class ItemOrderEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Integer id;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "order_id")
     private OrderEntity clientOrder;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_id")
     private ProductEntity product;
     @Column(name = "quantity")
     private int quantity;
 
-    public OrderEntity getClientOrder() {
-        return clientOrder;
-    }
-
-    public void setClientOrder(OrderEntity clientOrder) {
-        this.clientOrder = clientOrder;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public OrderEntity getOrders() {
-        return clientOrder;
-    }
-
-    public void setOrders(OrderEntity orderEntity) {
-        this.clientOrder = orderEntity;
-    }
-
-    public ProductEntity getProduct() {
-        return product;
-    }
-
-    public void setProduct(ProductEntity productEntity) {
-        this.product = productEntity;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 }
