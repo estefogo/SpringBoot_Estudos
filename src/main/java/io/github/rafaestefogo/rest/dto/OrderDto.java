@@ -12,8 +12,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDTO {
-    private Integer cliente;
+public class OrderDto {
+    private Integer client;
     private BigDecimal total;
-    private List<ItemOrderDTO> items;
+    private List<ItemOrderDto> items;
 }
